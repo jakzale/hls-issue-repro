@@ -59,3 +59,44 @@ Completed (0 files worked, 1 file failed)
 2021-05-13 12:22:51.954483 [ThreadId 417] INFO hls:	finish: GenerateCore (took 0.00s)
 
 ```
+
+Also, not sure if related, but sometimes I will get the following error
+```
+[nix-shell:~/Developer/hls-issue-repro]$ haskell-language-server --debug src/Bar.hs 
+haskell-language-server version: 1.1.0.0 (GHC: 8.10.4.20210212) (PATH: /nix/store/dw928lhxj22587a474kqlxd0nmpwyw9n-haskell-language-server-exe-haskell-language-server-1.1.0.0/bin/haskell-language-server)
+ ghcide setup tester in /Users/jakub/Developer/hls-issue-repro.
+Report bugs at https://github.com/haskell/haskell-language-server/issues
+
+Step 1/4: Finding files to test in /Users/jakub/Developer/hls-issue-repro
+Found 1 files
+
+Step 2/4: Looking for hie.yaml files that control setup
+Found 1 cradle
+  ()
+
+Step 3/4: Initializing the IDE
+
+Step 4/4: Type checking the files
+2021-05-13 12:31:49.510329 [ThreadId 4] DEBUG hls:	Set files of interest to: [(NormalizedFilePath "/Users/jakub/Developer/hls-issue-repro/src/Bar.hs",OnDisk)]
+2021-05-13 12:31:49.511869 [ThreadId 44] DEBUG hls:	hlint:getIdeas:file:NormalizedFilePath "/Users/jakub/Developer/hls-issue-repro/src/Bar.hs"
+2021-05-13 12:31:49.512616 [ThreadId 51] INFO hls:	Consulting the cradle for "src/Bar.hs"
+2021-05-13 12:31:49.512763 [ThreadId 51] WARNING hls:	No [cradle](https://github.com/mpickering/hie-bios#hie-bios) found for src/Bar.hs.
+ Proceeding with [implicit cradle](https://hackage.haskell.org/package/implicit-hie).
+You should ignore this message, unless you see a 'Multi Cradle: No prefixes matched' error.
+Output from setting up the cradle Cradle {cradleRootDir = "/Users/jakub/Developer/hls-issue-repro", cradleOptsProg = CradleAction: Cabal}
+2021-05-13 12:31:49.533346 [ThreadId 50] INFO hls:	File:     /Users/jakub/Developer/hls-issue-repro/src/Bar.hs
+Hidden:   no
+Range:    1:1-2:1
+Source:   compiler
+Severity: DsError
+Message: 
+  cabal: streamingProcess: runInteractiveProcess: exec: resource exhausted (Cannot allocate memory)
+2021-05-13 12:31:49.536085 [ThreadId 59] INFO hls:	finish: User TypeCheck (took 0.02s)
+2021-05-13 12:31:49.536348 [ThreadId 61] INFO hls:	finish: GetHie (took 0.00s)
+Files that failed:
+2021-05-13 12:31:49.536773 [ThreadId 66] INFO hls:	finish: GenerateCore (took 0.00s)
+ * /Users/jakub/Developer/hls-issue-repro/src/Bar.hs
+
+Completed (0 files worked, 1 file failed)
+
+```
